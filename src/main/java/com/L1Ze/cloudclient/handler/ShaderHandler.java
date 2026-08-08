@@ -30,10 +30,16 @@ public class ShaderHandler {
                 loadShader();
             }
             if (shaderGroup != null) {
-                // 更新强度 uniform（通过反射或直接使用 ShaderGroup 的 uniform 设置）
+                // 🔥 1.8.9 中获取 Uniform 的正确方式：通过 listShaders 遍历
                 try {
-                    // 获取 "Intensity" uniform 并设置
-                    shaderGroup.getShaderGroupUniforms().get("Intensity").set(Config.motionBlurIntensity / 100f);
+                    if (shaderGroup.listShaders != null) {
+                        for (net.minecraft.client.shader.Shader shader : shaderGroup.listShaders) {
+                            if (shader.getShaderManager() != null) {
+                                shader.getShaderManager().getShaderUniform("Intensity")
+                                    .set(Config.motionBlurIntensity / 100f);
+                            }
+                        }
+                    }
                 } catch (Exception e) {
                     // 忽略
                 }
@@ -54,9 +60,8 @@ public class ShaderHandler {
         if (mc.theWorld == null) return;
 
         if (module.isEnabled() && Config.motionBlurEnabled && shaderGroup != null) {
-            // 在主帧缓冲渲染完成后，应用着色器
-            // 注意：这会覆盖整个画面，但随后 GUI 会渲染在上面
-            shaderGroup.render(mc.displayWidth, mc.displayHeight);
+            // 🔥 1.8.9 中 render 只接受一个参数 (partialTicks)
+            shaderGroup.render(event.partialTicks);
         }
     }
 
