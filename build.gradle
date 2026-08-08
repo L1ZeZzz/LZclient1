@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        // 国内镜像优先，加速依赖下载
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        mavenCentral()
+        maven {
+            name = "Forge"
+            url = "https://maven.minecraftforge.net/"
+        }
+        maven {
+            name = "Sonatype Snapshots"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+// 项目基本信息
+version = "1.0.0"
+group = "com.yourname.cloudclient"
+archivesBaseName = "cloudclient"
+
+// 使用 Java 8
+sourceCompatibility = targetCompatibility = 1.8
+
+// Minecraft 配置
+minecraft {
+    version = "1.8.9-11.15.1.2318-1.8.9"
+    runDir = "run"
+    mappings = "stable_22"  // 稳定映射，适合 1.8.9
+    // 若需要关闭 Forge 的自动更新检查可添加：
+    // clientJvmArgs += "-Dfml.ignoreInvalidMinecraftCertificates=true"
+    // serverJvmArgs += "-Dfml.ignoreInvalidMinecraftCertificates=true"
+}
+
+// 依赖管理（本项目无额外依赖）
+dependencies {
+    // 如需添加其他库，在此声明
+    // 例如：compile 'com.google.code.gson:gson:2.8.0'
+}
+
+// 处理资源文件中的变量替换
+processResources {
+    // 输入属性，用于 mcmod.info 中的占位符
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // 替换 mcmod.info 中的变量
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+    // 复制其他资源（不替换）
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+// 配置运行参数（可选）
+// 如果需要在开发时打开调试窗口，可取消注释：
+// runClient {
+//     args '--tweakClass', 'net.minecraftforge.fml.common.launcher.FMLTweaker'
+//     jvmArgs '-Dfml.coreMods.load='
+// }

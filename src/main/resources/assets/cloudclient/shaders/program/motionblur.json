@@ -1,0 +1,22 @@
+{
+  "targets": ["swap"],
+  "passes": [
+    {
+      "name": "blur",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "auxtargets": [
+        {
+          "name": "DiffuseSampler",
+          "id": "main"
+        }
+      ],
+      "uniforms": [
+        {
+          "name": "Intensity",
+          "values": [0.5]
+        }
+      ]
+    }
+  ]
+}
