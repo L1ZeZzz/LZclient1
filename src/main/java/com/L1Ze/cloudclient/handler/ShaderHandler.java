@@ -3,15 +3,15 @@ package com.yourname.cloudclient.handler;
 import com.yourname.cloudclient.config.Config;
 import com.yourname.cloudclient.module.MotionBlurModule;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.List;
 
 public class ShaderHandler {
     private static final MotionBlurModule module = new MotionBlurModule();
@@ -30,10 +30,14 @@ public class ShaderHandler {
                 loadShader();
             }
             if (shaderGroup != null) {
-                // 🔥 1.8.9 中获取 Uniform 的正确方式：通过 listShaders 遍历
+                // 使用反射获取 listShaders
                 try {
-                    if (shaderGroup.listShaders != null) {
-                        for (net.minecraft.client.shader.Shader shader : shaderGroup.listShaders) {
+                    Field listShadersField = ShaderGroup.class.getDeclaredField("listShaders");
+                    listShadersField.setAccessible(true);
+                    List<?> listShaders = (List<?>) listShadersField.get(shaderGroup);
+                    if (listShaders != null) {
+                        for (Object shaderObj : listShaders) {
+                            net.minecraft.client.shader.Shader shader = (net.minecraft.client.shader.Shader) shaderObj;
                             if (shader.getShaderManager() != null) {
                                 shader.getShaderManager().getShaderUniform("Intensity")
                                     .set(Config.motionBlurIntensity / 100f);
@@ -60,8 +64,8 @@ public class ShaderHandler {
         if (mc.theWorld == null) return;
 
         if (module.isEnabled() && Config.motionBlurEnabled && shaderGroup != null) {
-            // 🔥 1.8.9 中 render 只接受一个参数 (partialTicks)
-            shaderGroup.render(event.partialTicks);
+            // 🔥 1.8.9 中 render() 方法无参数
+            shaderGroup.render();
         }
     }
 
