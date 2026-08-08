@@ -1,4 +1,4 @@
-package com.yourname.cloudclient.module;
+package com.L1Ze.cloudclient.module;
 
 public abstract class Module {
     private final String name;
