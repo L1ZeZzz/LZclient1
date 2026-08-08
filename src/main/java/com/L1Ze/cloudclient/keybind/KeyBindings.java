@@ -1,4 +1,4 @@
-package com.yourname.cloudclient.keybind;
+package com.L1Ze.cloudclient.keybind;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
