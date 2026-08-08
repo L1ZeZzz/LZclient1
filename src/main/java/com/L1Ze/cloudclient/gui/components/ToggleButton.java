@@ -1,10 +1,8 @@
-package com.yourname.cloudclient.gui.components;
+package com.L1Ze.cloudclient.gui.components;
 
-import com.yourname.cloudclient.module.Module;
+import com.L1Ze.cloudclient.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-
-import java.io.IOException;
 
 public class ToggleButton extends ModuleButton {
     public ToggleButton(Module module, int x, int y, int width, int height) {
