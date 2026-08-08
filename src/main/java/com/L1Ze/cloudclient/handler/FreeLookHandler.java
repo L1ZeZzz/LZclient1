@@ -25,22 +25,17 @@ public class FreeLookHandler {
         if (keyDown && module.isEnabled() && mc.currentScreen == null) {
             if (!active) {
                 active = true;
-                // 保存当前玩家朝向作为初始
                 cameraYaw = mc.thePlayer.rotationYaw;
                 cameraPitch = mc.thePlayer.rotationPitch;
-                // 让鼠标不再控制玩家朝向
                 mc.mouseHelper.grabMouseCursor();
-                // 记录鼠标位置增量
                 lastMouseX = Mouse.getX();
                 lastMouseY = Mouse.getY();
             } else {
-                // 计算鼠标移动增量
                 float dx = Mouse.getX() - lastMouseX;
                 float dy = Mouse.getY() - lastMouseY;
                 lastMouseX = Mouse.getX();
                 lastMouseY = Mouse.getY();
 
-                // 灵敏度缩放
                 float sens = mc.gameSettings.mouseSensitivity * 0.6f + 0.2f;
                 float scale = sens * 0.15f;
                 cameraYaw += dx * scale;
@@ -50,7 +45,6 @@ public class FreeLookHandler {
         } else {
             if (active) {
                 active = false;
-                // 恢复鼠标抓取（如果之前被抓取）
                 if (mc.currentScreen == null) {
                     mc.mouseHelper.grabMouseCursor();
                 }
@@ -60,11 +54,10 @@ public class FreeLookHandler {
 
     @SubscribeEvent
     public void onCameraSetup(EntityViewRenderEvent.CameraSetup event) {
-        if (active && module.isEnabled()) {
-            // 覆盖相机的旋转
-            event.setYaw(cameraYaw);
-            event.setPitch(cameraPitch);
-            event.setRoll(0);
-        }
+        // 🔥 1.8.9 中 CameraSetup 不支持 setYaw/setPitch/setRoll
+        // 这些方法在 Forge 1.12+ 才存在，1.8.9 中需要用其他方式实现
+        // 因此这里暂时空置，FreeLook 功能通过 Mixin 或直接修改实体实现
+        // 如果你需要 FreeLook，建议用 Mixin 修改 EntityRenderer
+        // 或者接受仅客户端视角变化（不修改实体朝向）
     }
 }
