@@ -1,7 +1,7 @@
-package com.yourname.cloudclient.handler;
+package com.L1Ze.cloudclient.handler;
 
-import com.yourname.cloudclient.keybind.KeyBindings;
-import com.yourname.cloudclient.module.FreeLookModule;
+import com.L1Ze.cloudclient.keybind.KeyBindings;
+import com.L1Ze.cloudclient.module.FreeLookModule;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -54,10 +54,8 @@ public class FreeLookHandler {
 
     @SubscribeEvent
     public void onCameraSetup(EntityViewRenderEvent.CameraSetup event) {
-        // 🔥 1.8.9 中 CameraSetup 不支持 setYaw/setPitch/setRoll
-        // 这些方法在 Forge 1.12+ 才存在，1.8.9 中需要用其他方式实现
-        // 因此这里暂时空置，FreeLook 功能通过 Mixin 或直接修改实体实现
-        // 如果你需要 FreeLook，建议用 Mixin 修改 EntityRenderer
-        // 或者接受仅客户端视角变化（不修改实体朝向）
+        // 1.8.9 中 CameraSetup 没有 setYaw/setPitch/setRoll
+        // 需要 Mixin 或直接修改 entity 来实现 FreeLook
+        // 暂时留空，FreeLook 功能未完全实现
     }
 }
