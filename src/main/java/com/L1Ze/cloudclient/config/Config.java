@@ -1,4 +1,4 @@
-package com.yourname.cloudclient.config;
+package com.L1Ze.cloudclient.config;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
