@@ -1,8 +1,8 @@
-package com.yourname.cloudclient.handler;
+package com.L1Ze.cloudclient.handler;
 
-import com.yourname.cloudclient.config.Config;
-import com.yourname.cloudclient.module.TranslationModule;
-import com.yourname.cloudclient.util.TranslateUtil;
+import com.L1Ze.cloudclient.config.Config;
+import com.L1Ze.cloudclient.module.TranslationModule;
+import com.L1Ze.cloudclient.util.TranslateUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,7 +18,7 @@ public class TranslationHandler {
         if (mc.currentScreen instanceof GuiChat && module.isEnabled() && Config.translationEnabled) {
             if (Keyboard.getEventKey() == Keyboard.KEY_TAB && Keyboard.getEventKeyState()) {
                 GuiChat chat = (GuiChat) mc.currentScreen;
-                // 获取输入框内容 (通过反射或直接访问字段)
+                // 获取输入框内容 (通过反射)
                 String input = getChatInput(chat);
                 if (input != null && !input.isEmpty()) {
                     // 异步翻译
