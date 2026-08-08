@@ -1,8 +1,8 @@
-package com.yourname.cloudclient;
+package com.L1Ze.cloudclient;
 
-import com.yourname.cloudclient.config.Config;
-import com.yourname.cloudclient.handler.EventHandlers;
-import com.yourname.cloudclient.keybind.KeyBindings;
+import com.L1Ze.cloudclient.config.Config;
+import com.L1Ze.cloudclient.handler.EventHandlers;
+import com.L1Ze.cloudclient.keybind.KeyBindings;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
