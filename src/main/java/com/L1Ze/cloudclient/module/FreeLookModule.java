@@ -1,6 +1,6 @@
-package com.yourname.cloudclient.module;
+package com.L1Ze.cloudclient.module;
 
-import com.yourname.cloudclient.config.Config;
+import com.L1Ze.cloudclient.config.Config;
 
 public class FreeLookModule extends Module {
     public FreeLookModule() {
