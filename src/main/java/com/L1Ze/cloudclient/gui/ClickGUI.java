@@ -1,13 +1,13 @@
-package com.yourname.cloudclient.gui;
+package com.L1Ze.cloudclient.gui;
 
-import com.yourname.cloudclient.config.Config;
-import com.yourname.cloudclient.gui.components.ModuleButton;
-import com.yourname.cloudclient.gui.components.Slider;
-import com.yourname.cloudclient.gui.components.ToggleButton;
-import com.yourname.cloudclient.module.FreeLookModule;
-import com.yourname.cloudclient.module.Module;
-import com.yourname.cloudclient.module.MotionBlurModule;
-import com.yourname.cloudclient.module.TranslationModule;
+import com.L1Ze.cloudclient.config.Config;
+import com.L1Ze.cloudclient.gui.components.ModuleButton;
+import com.L1Ze.cloudclient.gui.components.Slider;
+import com.L1Ze.cloudclient.gui.components.ToggleButton;
+import com.L1Ze.cloudclient.module.FreeLookModule;
+import com.L1Ze.cloudclient.module.Module;
+import com.L1Ze.cloudclient.module.MotionBlurModule;
+import com.L1Ze.cloudclient.module.TranslationModule;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiButton;
 
