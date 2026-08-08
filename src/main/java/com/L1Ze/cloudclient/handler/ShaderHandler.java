@@ -1,7 +1,7 @@
-package com.yourname.cloudclient.handler;
+package com.L1Ze.cloudclient.handler;
 
-import com.yourname.cloudclient.config.Config;
-import com.yourname.cloudclient.module.MotionBlurModule;
+import com.L1Ze.cloudclient.config.Config;
+import com.L1Ze.cloudclient.module.MotionBlurModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.util.ResourceLocation;
@@ -64,7 +64,7 @@ public class ShaderHandler {
         if (mc.theWorld == null) return;
 
         if (module.isEnabled() && Config.motionBlurEnabled && shaderGroup != null) {
-            // 🔥 1.8.9 中 render() 方法无参数
+            // 1.8.9 中 render() 方法无参数
             shaderGroup.render();
         }
     }
