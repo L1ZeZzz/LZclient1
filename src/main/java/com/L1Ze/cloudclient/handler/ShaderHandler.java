@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class ShaderHandler {
@@ -63,8 +64,21 @@ public class ShaderHandler {
         if (mc.theWorld == null) return;
 
         if (module.isEnabled() && Config.motionBlurEnabled && shaderGroup != null) {
-            // 🔥 1.8.9 中 render 需要传入 partialTicks
-            shaderGroup.render(event.partialTicks);
+            try {
+                // 尝试使用反射调用 render 方法
+                Method renderMethod = ShaderGroup.class.getDeclaredMethod("render", float.class);
+                renderMethod.setAccessible(true);
+                renderMethod.invoke(shaderGroup, event.partialTicks);
+            } catch (Exception e) {
+                // 如果单参数失败，尝试无参
+                try {
+                    Method renderMethod = ShaderGroup.class.getDeclaredMethod("render");
+                    renderMethod.setAccessible(true);
+                    renderMethod.invoke(shaderGroup);
+                } catch (Exception ex) {
+                    // 忽略
+                }
+            }
         }
     }
 
