@@ -30,7 +30,6 @@ public class ShaderHandler {
                 loadShader();
             }
             if (shaderGroup != null) {
-                // 使用反射获取 listShaders
                 try {
                     Field listShadersField = ShaderGroup.class.getDeclaredField("listShaders");
                     listShadersField.setAccessible(true);
@@ -64,8 +63,8 @@ public class ShaderHandler {
         if (mc.theWorld == null) return;
 
         if (module.isEnabled() && Config.motionBlurEnabled && shaderGroup != null) {
-            // 1.8.9 中 render() 方法无参数
-            shaderGroup.render();
+            // 🔥 1.8.9 中 render 需要传入 partialTicks
+            shaderGroup.render(event.partialTicks);
         }
     }
 
