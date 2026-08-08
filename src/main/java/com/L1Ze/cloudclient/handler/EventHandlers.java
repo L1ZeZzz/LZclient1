@@ -1,4 +1,4 @@
-package com.yourname.cloudclient.handler;
+package com.L1Ze.cloudclient.handler;
 
 import net.minecraftforge.common.MinecraftForge;
 
