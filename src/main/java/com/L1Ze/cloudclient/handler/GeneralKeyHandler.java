@@ -1,7 +1,7 @@
-package com.yourname.cloudclient.handler;
+package com.L1Ze.cloudclient.handler;
 
-import com.yourname.cloudclient.gui.ClickGUI;
-import com.yourname.cloudclient.keybind.KeyBindings;
+import com.L1Ze.cloudclient.gui.ClickGUI;
+import com.L1Ze.cloudclient.keybind.KeyBindings;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
