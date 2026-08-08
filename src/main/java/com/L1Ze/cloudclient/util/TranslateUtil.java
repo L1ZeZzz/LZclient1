@@ -1,6 +1,6 @@
-package com.yourname.cloudclient.util;
+package com.L1Ze.cloudclient.util;
 
-import com.yourname.cloudclient.config.Config;
+import com.L1Ze.cloudclient.config.Config;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
