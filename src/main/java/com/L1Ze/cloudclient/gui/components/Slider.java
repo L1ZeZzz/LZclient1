@@ -1,6 +1,6 @@
-package com.yourname.cloudclient.gui.components;
+package com.L1Ze.cloudclient.gui.components;
 
-import com.yourname.cloudclient.config.Config;
+import com.L1Ze.cloudclient.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 
